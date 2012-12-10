@@ -10,7 +10,7 @@
     <properties>
         <jbehave.core.version>3.8-SNAPSHOT</jbehave.core.version>
         <jbehave.site.version>3.1.1</jbehave.site.version>
-        <hamcrest.version>1.2</hamcrest.version>        
+        <hamcrest.version>1.2</hamcrest.version>
         <slf4j.version>1.6.4</slf4j.version>
         <embeddables>**/*Stories.java</embeddables>
     </properties>
@@ -49,7 +49,7 @@
             <version>3.1</version>
         </dependency>
 
-        
+
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <!-- ~~~~~~~~~~~~~~~~Log~~~~~~~~~~~~~~~~ -->
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -166,12 +166,22 @@
                             <metaFilters>
                                 <metaFilter></metaFilter>
                             </metaFilters>
+                            <!-- Indicates that stories will be looked up in the POM test source directory -->
+                            <scope>test</scope>
                         </configuration>
                         <goals>
                             <goal>run-stories-as-embeddables</goal>
                         </goals>
                     </execution>
                 </executions>
+                <!-- Needed for freemarker to be able to load its classes -->
+                <dependencies>
+                    <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>1.2.16</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
