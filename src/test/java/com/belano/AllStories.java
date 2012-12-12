@@ -59,8 +59,9 @@ public class AllStories extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
+        // Locate steps either from spring context file or annotation config
         // ApplicationContext context = new SpringApplicationContextFactory("my_steps.xml").createApplicationContext();
-        ApplicationContext context = Springs.createAnnotatedContextFromBasePackages("com.belano");
+        ApplicationContext context = Springs.createAnnotatedContextFromBasePackages("com.belano.steps");
         return new SpringStepsFactory(configuration(), context);
     }
 
