@@ -1,6 +1,5 @@
 package com.belano.calculator;
 
-import com.belano.calculator.Calculator;
 
 public class CalculatorContext {
 

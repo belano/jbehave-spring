@@ -21,6 +21,22 @@ public class Note {
         return new Note(GuitarString.B, i);
     }
 
+    public static Note E(int i) {
+        return new Note(GuitarString.E, i);
+    }
+
+    public static Note e(int i) {
+        return new Note(GuitarString.e, i);
+    }
+
+    public static Note G(int i) {
+        return new Note(GuitarString.G, i);
+    }
+
+    public static Note D(int i) {
+        return new Note(GuitarString.D, i);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("string", this.string).append("fret", this.fret).toString();

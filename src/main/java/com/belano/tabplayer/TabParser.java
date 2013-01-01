@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface TabParser {
 
-    List<Note> parseAsciiTab(String asciiTabFile);
+    List<Note> parseAsciiTab(String asciiTab);
 
 }

@@ -15,6 +15,7 @@ import com.belano.tabplayer.Guitar;
 import com.belano.tabplayer.Note;
 import com.belano.tabplayer.PlayedNotesConverter;
 import com.belano.tabplayer.Tab;
+import com.belano.tabplayer.TabFileReader;
 import com.belano.util.StepsDefinition;
 
 @StepsDefinition
@@ -23,8 +24,9 @@ public class TabPlayerSteps {
     Tab tab;
     Guitar guitar;
 
-    @Given("tab $ascii tab")
-    public void tab(String asciiTab) {
+    @Given("we have the input tab from file $ascii")
+    public void tab(String asciiTabFile) {
+        String asciiTab = new TabFileReader().readAsciiTabFromFile(asciiTabFile);
         tab = new Tab(asciiTab, new DefaultTabParser());
     }
 
@@ -49,18 +51,19 @@ public class TabPlayerSteps {
 
     private class NotesPlayedMatcher extends TypeSafeMatcher<List<Note>> {
 
-        private Guitar guitar;
+        List<Note> notesPlayed;
 
         public NotesPlayedMatcher(Guitar guitar) {
-            this.guitar = guitar;
+            this.notesPlayed = guitar.notesPlayed();
         }
 
         @Override
         protected boolean matchesSafely(List<Note> expectedNotes) {
-            return guitar.notesPlayed().equals(expectedNotes);
+            return notesPlayed.equals(expectedNotes);
         }
 
         public void describeTo(Description description) {
+            description.appendText(notesPlayed.toString());
         }
 
     }
